@@ -47,23 +47,24 @@ function addTeamMember() {
         name: 'moreMembers'
     }
 ])
-    .then(function({roleInfo, moreMembers}) {
-        let newMember;
-        if (role === 'engineer') {
-            newMember = new engineer(name, id, email, roleInfo)
-        } else if (role === 'intern') {
-            newMember = new intern(name, id, email, roleInfo)
+.then(function({roleInfo, moreMembers}) {
+    let newMember;
+    if (role === "engineer") {
+        newMember = new engineer(name, id, email, roleInfo);
+    } else if (role === "Intern") {
+        newMember = new intern(name, id, email, roleInfo);
+    } else {
+        newMember = new manager(name, id, email, roleInfo);
+    }
+    employees.push(newMember);
+    addHtml(newMember)
+    .then(function() {
+        if (moreMembers === "yes") {
+            addMember();
         } else {
-            newMember = manager(name, id, email, roleInfo)
+            console.log("done")
+            // finishHtml();
         }
-        employees.push(newMember)
-        addHtml(newMember)
-        .then(function() {
-            if (moreMembers === 'yes') {
-                addTeamMember()
-            }else {
-                finishHtml()
-            }
         })
     }
     )
