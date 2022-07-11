@@ -1,5 +1,7 @@
 # Team Profile Generator
 
+  [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+  https://opensource.org/licenses/Apache-2.0
   # Description
   A command line application that prompt users to create team members profile. HTML file is generated that displays formatted team roesteer based on user input.
   
@@ -13,6 +15,7 @@
   # Credits
   
   
-
+  # License
+  [Apache licensed](https://opensource.org/licenses/Apache-2.0) 
   
 
