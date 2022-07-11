@@ -4,7 +4,7 @@
   https://opensource.org/licenses/Apache-2.0
   # Description
   A command line application that prompt users to create team members profile. HTML file is generated that displays formatted team roesteer based on user input.
-  
+  ![Alt text](/dist/assets/images/screen_shot.png)
   # Installation
   to install please clone the repository found on my github account. Needto also download inquirer
  
