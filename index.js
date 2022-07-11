@@ -9,11 +9,8 @@ const employees = []
 async function generateProfile () {
     await addTeamMember()
     startHtml()
-    // addHtml(employees[0])
-    // finishHtml()
-
 }
-
+// create function to accept user input  
 async function addTeamMember() {
     const {name, role, id, email} = await inquirer.prompt(
         [
@@ -37,7 +34,7 @@ async function addTeamMember() {
             },
         ]
     )
-
+ // create additional questions for engineer and intern
     let info = ""
     if (role === 'engineer') {
         info = 'github username'
@@ -83,7 +80,8 @@ async function addTeamMember() {
     
     
 }
-
+// genetate main Html 
+// use for loop to populate employee information
 function startHtml() {
     let employeeHtml = ""
     for (let i = 0; i < employees.length; i++) {
@@ -111,15 +109,15 @@ function startHtml() {
     </body>
 </html>    
 `
-
+// create html file under output folder
     fs.writeFile("./output/member.html", html, function(err) {
         if (err) {
             console.log(err)
         }
       
     })
-    console.log("start")
 }
+// create each employee page
 
 function addHtml(member) {
     console.log(member)
@@ -132,7 +130,7 @@ function addHtml(member) {
         const gitHub = member.roleInfo.value
         data = `<div class="col-6">
         <div class="card mx-auto mb-3" style="width: 18rem">
-        <h5 class="card-header">${name}<br /><br />Engineer</h5>
+        <h5 class="card-header" style="background-color: blue; color: white;">${name}<br /><br />Engineer</h5>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">ID: ${id}</li>
             <li class="list-group-item">Email Address: ${email}</li>
@@ -166,36 +164,7 @@ function addHtml(member) {
     </div>`
     }
     console.log("adding team member")
-    // fs.appendFile("./output/member.html", data, function (err) {
-    //     if (err) {
-    //         console.log(err)
-    //     }
-    // })
-
     return data
 }
-
-function finishHtml() {
-    const html = ` </div>
-    </div>
-    
-</body>
-</html>`
-
-    fs.appendFile("./output/member.html", html, function (err) {
-        if (err) {
-            console.log(err)
-        }
-    })
-    console.log("end")
-}
-
-// addMember()
-// startHtml()
-// addHtml("hi")
-// .then(function() {
-// finishHtml()
-// })
-
 
 generateProfile()
