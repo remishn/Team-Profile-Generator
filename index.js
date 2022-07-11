@@ -126,7 +126,7 @@ function addHtml(member) {
     const id = member.id
     const email = member.email
     let data = ""
-    if (role === "engineer") {
+    if (role === 'engineer') {
         const gitHub = member.roleInfo.value
         data = `<div class="col-6">
         <div class="card mx-auto mb-3" style="width: 18rem">
@@ -138,11 +138,11 @@ function addHtml(member) {
         </ul>
         </div>
     </div>`
-    } else if (role === "Intern") {
+    } else if (role === 'intern') {
         const school = member.roleInfo.value
         data = `<div class="col-6">
         <div class="card mx-auto mb-3" style="width: 18rem">
-        <h5 class="card-header">${name}<br /><br />Intern</h5>
+        <h5 class="card-header"style="background-color: blue; color: white;">${name}<br /><br />Intern</h5>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">ID: ${id}</li>
             <li class="list-group-item">Email Address: ${email}</li>
@@ -154,7 +154,7 @@ function addHtml(member) {
         const officePhone = member.roleInfo.value
         data = `<div class="col-6">
         <div class="card mx-auto mb-3" style="width: 18rem">
-        <h5 class="card-header">${name}<br /><br />Manager</h5>
+        <h5 class="card-header"style="background-color: blue; color: white;">${name}<br /><br />Manager</h5>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">ID: ${id}</li>
             <li class="list-group-item">Email Address: ${email}</li>
