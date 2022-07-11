@@ -11,6 +11,9 @@
   
   # Usage
   Open the application in the terminal type node index.js and answer the questions. At the end of questions Html file automatically generated.
+  see the link below to see the video
+  
+  https://drive.google.com/file/d/1aTC1-yHRhZKVKD301-FfRgVqMFPwh4Hj/view
   
   # Credits
   
