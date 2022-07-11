@@ -1,4 +1,4 @@
-const inquirer = require('inquirer');
+const inquirer = require('inquirer')
 const fs = require('fs')
 const engineer = require('./tests/engineer.test')
 const manager = require('./tests/manager.test')
@@ -7,8 +7,10 @@ const intern = require('./tests/intern.test')
 const employees = []
 
 async function generateProfile () {
-    await addTeamMember();
+    await addTeamMember()
     startHtml()
+    // addHtml(employees[0])
+    // finishHtml()
 
 }
 
@@ -83,8 +85,14 @@ async function addTeamMember() {
 }
 
 function startHtml() {
-    const html = `<!DOCTYPE html>
-    <html lang="en">
+    let employeeHtml = ""
+    for (let i = 0; i < employees.length; i++) {
+        employeeHtml = employeeHtml + addHtml(employees[i])
+    }
+
+    const html = `
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,8 +104,14 @@ function startHtml() {
             <span class="navbar-brand mb-0 h1 w-100 text-center">Team Profile</span>
         </nav>
         <div class="container">
-            <div class="row">`;
-            
+            <div class="row">
+                ${employeeHtml}
+            </div>
+        </div>
+    </body>
+</html>    
+`
+
     fs.writeFile("./output/member.html", html, function(err) {
         if (err) {
             console.log(err)
@@ -106,5 +120,82 @@ function startHtml() {
     })
     console.log("start")
 }
+
+function addHtml(member) {
+    console.log(member)
+    const name = member.name
+    const role = member.role
+    const id = member.id
+    const email = member.email
+    let data = ""
+    if (role === "engineer") {
+        const gitHub = member.roleInfo.value
+        data = `<div class="col-6">
+        <div class="card mx-auto mb-3" style="width: 18rem">
+        <h5 class="card-header">${name}<br /><br />Engineer</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">ID: ${id}</li>
+            <li class="list-group-item">Email Address: ${email}</li>
+            <li class="list-group-item">GitHub: ${gitHub}</li>
+        </ul>
+        </div>
+    </div>`
+    } else if (role === "Intern") {
+        const school = member.roleInfo.value
+        data = `<div class="col-6">
+        <div class="card mx-auto mb-3" style="width: 18rem">
+        <h5 class="card-header">${name}<br /><br />Intern</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">ID: ${id}</li>
+            <li class="list-group-item">Email Address: ${email}</li>
+            <li class="list-group-item">School: ${school}</li>
+        </ul>
+        </div>
+    </div>`
+    } else {
+        const officePhone = member.roleInfo.value
+        data = `<div class="col-6">
+        <div class="card mx-auto mb-3" style="width: 18rem">
+        <h5 class="card-header">${name}<br /><br />Manager</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">ID: ${id}</li>
+            <li class="list-group-item">Email Address: ${email}</li>
+            <li class="list-group-item">Office Phone: ${officePhone}</li>
+        </ul>
+        </div>
+    </div>`
+    }
+    console.log("adding team member")
+    // fs.appendFile("./output/member.html", data, function (err) {
+    //     if (err) {
+    //         console.log(err)
+    //     }
+    // })
+
+    return data
+}
+
+function finishHtml() {
+    const html = ` </div>
+    </div>
+    
+</body>
+</html>`
+
+    fs.appendFile("./output/member.html", html, function (err) {
+        if (err) {
+            console.log(err)
+        }
+    })
+    console.log("end")
+}
+
+// addMember()
+// startHtml()
+// addHtml("hi")
+// .then(function() {
+// finishHtml()
+// })
+
 
 generateProfile()
