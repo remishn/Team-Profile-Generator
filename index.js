@@ -6,9 +6,10 @@ const intern = require('./tests/intern.test')
 
 const employees = []
 
-function generateProfile () {
+async function generateProfile () {
+    await addTeamMember();
     startHtml()
-    addTeamMember()
+
 }
 
 async function addTeamMember() {
@@ -75,31 +76,35 @@ async function addTeamMember() {
     console.log(employees)
 
     if (moreMembers === 'yes') {
-        addTeamMember()
+        await addTeamMember()
     }
     
-    function startHtml() {
-        const html = `<!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">            <title>Team Profile</title>
-        </head>
-        <body>
-            <nav class="navbar navbar-dark bg-dark mb-5">
-                <span class="navbar-brand mb-0 h1 w-100 text-center">Team Profile</span>
-            </nav>
-            <div class="container">
-                <div class="row">`;
-        fs.writeFile("./output/member.html", html, function(err) {
-            if (err) {
-                console.log(err);
-            }
-        });
-        console.log("start");
-    }
+    
+}
+
+function startHtml() {
+    const html = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">            <title>Team Profile</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-dark mb-5">
+            <span class="navbar-brand mb-0 h1 w-100 text-center">Team Profile</span>
+        </nav>
+        <div class="container">
+            <div class="row">`;
+            
+    fs.writeFile("./output/member.html", html, function(err) {
+        if (err) {
+            console.log(err)
+        }
+      
+    })
+    console.log("start")
 }
 
 generateProfile()
